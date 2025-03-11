@@ -14,6 +14,8 @@ pub fn main() anyerror!void {
     rl.setTargetFPS(60); // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
 
+    var ballY: f32 = 0;
+
     // Main game loop
     while (!rl.windowShouldClose()) { // Detect window close button or ESC key
         // Update
@@ -21,19 +23,23 @@ pub fn main() anyerror!void {
         // TODO: Update your variables here
         //----------------------------------------------------------------------------------
 
+        if (ballY < screenHeight) {
+            ballY += 10;
+        } else {
+            ballY = 0;
+        }
         // Draw
         //----------------------------------------------------------------------------------
         rl.beginDrawing();
         defer rl.endDrawing();
 
-        rl.clearBackground(rl.Color.red);
+        rl.clearBackground(rl.Color.purple);
 
         rl.drawText("Code Synergy", 190, 200, 20, rl.Color.black);
 
         // Circle shapes and lines
-        rl.drawCircle(screenWidth / 5, 120, 35, rl.Color.dark_blue);
-        rl.drawCircleGradient(screenWidth / 5, 220, 60, rl.Color.green, rl.Color.sky_blue);
-        rl.drawCircleLines(screenWidth / 5, 340, 80, rl.Color.dark_blue);
+        rl.drawCircle(screenWidth / 5, @intFromFloat(ballY), 35, rl.Color.dark_blue);
+
         //----------------------------------------------------------------------------------
     }
 }
