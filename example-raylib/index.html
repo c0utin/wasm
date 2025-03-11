@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Raylib Zig WebAssembly</title>
+        <script src="./zig-out/htmlout/index.js"></script>
+    </head>
+    <body>
+        <canvas id="canvas"></canvas>
+        <script>
+            const canvas = document.getElementById("canvas");
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            var Module = {
+                canvas: canvas,
+                onRuntimeInitialized: function () {
+                    console.log("WASM :)");
+                },
+            };
+        </script>
+    </body>
+</html>
